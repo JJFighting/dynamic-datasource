@@ -29,6 +29,10 @@ public class MybatisConfig {
     @Resource(name = DataSourceName.SLAVE)
     DataSource slaveDataSource;
 
+    /**
+     * 配置动态数据源dynamicDataSource
+     * @return
+     */
     @Bean(name = "dynamicDataSource")
     public DataSource dynamicDataSource(){
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
@@ -40,6 +44,11 @@ public class MybatisConfig {
         return dynamicDataSource;
     }
 
+    /**
+     * 配置SqlSessionFactoryBean
+     * @param dataSource
+     * @return
+     */
     @Bean
     @ConfigurationProperties(prefix = "mybatis")
     public SqlSessionFactoryBean sqlSessionFactoryBean(@Qualifier("dynamicDataSource") DataSource dataSource) {

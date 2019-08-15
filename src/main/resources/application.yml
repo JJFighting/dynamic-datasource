@@ -7,13 +7,13 @@ spring:
     master:
       driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://192.168.0.150:3306/master?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+      url: jdbc:mysql://localhost:3306/master?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
       username: root
       password: 123456
     slave:
       driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.alibaba.druid.pool.DruidDataSource
-      url: jdbc:mysql://192.168.0.150:3306/slave?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+      url: jdbc:mysql://localhost:3306/slave?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
       username: root
       password: 123456
 mybatis:

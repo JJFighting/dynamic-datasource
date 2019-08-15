@@ -17,16 +17,23 @@ import java.lang.reflect.Method;
  * @author djj
  * @Date 2019/7/3
  * @Time 23:42
+ * AOP组件
  */
 @Slf4j
 @Aspect
 @Component
 public class DynamicDataSourceAspect {
 
+    /**
+     * 拦截使用了RoutingDataSource注解的service方法，
+     * 在方法执行之前通过设置Threadlocal的值，设置当前线程使用的datasource
+     * @param joinPoint
+     */
     @Before("@annotation(cn.djjboom.dynamic_datasource.annotation.RoutingDataSource)")
     public void beforeMethod(JoinPoint joinPoint){
         MethodSignature signature = (MethodSignature)joinPoint.getSignature();
         Method method = signature.getMethod();
+
         if (method.isAnnotationPresent(RoutingDataSource.class)){
             RoutingDataSource annotation = method.getAnnotation(RoutingDataSource.class);
             String datasource = annotation.value();
@@ -34,6 +41,9 @@ public class DynamicDataSourceAspect {
         }
     }
 
+    /**
+     * 方法执行完成后，清除
+     */
     @After("@annotation(cn.djjboom.dynamic_datasource.annotation.RoutingDataSource)")
     public void afterMethod(){
         DatasourceContextHolder.removeDataSource();

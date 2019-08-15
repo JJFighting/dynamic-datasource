@@ -15,5 +15,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface RoutingDataSource {
+    /**
+     *
+     * @return datasource key映射
+     */
     String value() default DataSourceName.MASTER;
 }

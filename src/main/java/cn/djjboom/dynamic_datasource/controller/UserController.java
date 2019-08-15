@@ -25,6 +25,7 @@ public class UserController {
     public List<User> list(){
         return userService.findAllBySlave();
     }
+
     @GetMapping("/master")
     public List<User> listMaster(){
         return userService.findAllByMaster();
